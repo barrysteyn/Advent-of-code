@@ -53,10 +53,36 @@ fn part2(input: &String) -> u32 {
         .sum()
 }
 
+fn part1_alternative(input: &String) -> u32 {
+    input.lines()
+        .map(|line| (&line[..line.len()/2], &line[line.len()/2..]))
+        .map(|(l1, l2 )|
+            (l1.chars().collect::<HashSet<char>>(), l2.chars().collect::<HashSet<char>>())
+        )
+        .flat_map(|(hs1, hs2)| hs1.intersection(&hs2).cloned().collect::<Vec<char>>())
+        .map(|c|
+            match c {
+                'a'..='z'=> c as u32 - 'a' as u32 + 1,
+                'A'..='Z' => c as u32 - 'A' as u32 + 27,
+                _ => 0
+            }
+        )
+        .sum()
+}
+
+fn part2_alternative(input: &String) -> u32 {
+    input.lines()
+        .flat_map(|line| line.chars().collect::<HashSet<char>>())
+        .chunks(3)
+        .into_iter()
+        .reduce(|e1, e1|, )
+}
+
 fn main() {
     let input = fs::read_to_string("./src/input.txt")
         .expect("Should have been able to read the file");
 
     println!("Part 1: {}", part1(&input));
+    println!("Part 1: {}", part1_alternative(&input));
     println!("Part 2: {}", part2(&input));
 }
