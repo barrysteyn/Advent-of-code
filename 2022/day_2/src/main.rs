@@ -67,6 +67,16 @@ fn main() {
     let contents = fs::read_to_string("./src/input.txt")
         .expect("Should have been able to read the file");
 
-    println!("Solution for part 1 {}", solve_part_1(&contents));
-    println!("Solution for part 1 {}", solve_part_2(&contents));
+    let test = contents
+        .lines()
+        .map(|s| s.split(" "))
+        .map(|(a,b)| a)
+        .collect();
+        // .zip(|s| s.split(" "))
+        // .collect();
+        // .split(" ");
+    println!("{:?}", test);
+
+    // println!("Solution for part 1 {}", solve_part_1(&contents));
+    // println!("Solution for part 1 {}", solve_part_2(&contents));
 }
