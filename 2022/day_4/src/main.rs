@@ -29,22 +29,20 @@ fn convert_input(input: &String) -> Vec<(Range<u32>,Range<u32>)> {
 fn part_1(input: &String) -> usize {
     convert_input(input)
         .iter()
-        .map(|(r1, r2)|
+        .filter(|(r1, r2)|
             r1.start <= r2.start && r2.end <= r1.end ||
             r2.start <= r1.start && r1.end <= r2.end
         )
-        .filter(|b| *b == true)
         .count()
 }
 
 fn part_2(input: &String) -> usize {
     convert_input(input)
         .iter()
-        .map(|(r1, r2)|
+        .filter(|(r1, r2)|
             r1.start <= r2.start && r1.end >= r2.start ||
             r2.start <= r1.start && r2.end >= r1.start
         )
-        .filter(|b| *b == true)
         .count()
 }
 
